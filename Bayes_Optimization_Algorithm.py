@@ -160,6 +160,7 @@ class BayesOptAlg:
 		@returns - list of floats/1darray of floats
 			a list matching the size of candidateParams; containing the values of the PoI func
 		'''
+		warnings.simplefilter("ignore", UserWarning)
 		with warnings.catch_warnings():
 			# calculate the best surrogate score found so far
 			yhat= self.pollSurrogate(self.sampleArray)
@@ -187,6 +188,7 @@ class BayesOptAlg:
 		@returns - list of floats/1darray of floats
 			a list matching the size of candidateParams; containing the values of the EI func
 		'''
+		warnings.simplefilter("ignore", UserWarning)
 		with warnings.catch_warnings():
 			#find f(best); the result of the current best parameter set
 			bestCurrentResult = max(self.pollSurrogate(self.sampleArray))
@@ -209,14 +211,13 @@ class BayesOptAlg:
 		@returns - list of floats/1darray of floats
 			the parameter set that maximizes the acquisition Function
 		'''
+		#TODO: better method of optimizing the function
+		# TODO: better number here
 		candidateNum = 100
 	
 	
 		candidateParams = [[rand.RandomInRange_Tuple(range) for range in self.paramRanges] \
-		 for j in range(candidateNum)] 
-		#print(candidateParams)
-		 #done one candidateNum times TODO: better number here
-		#print(self.acquisitionFunc(candidateParams))
+		 for j in range(candidateNum)]
 		optimalIndex = argmax(self.acquisitionFunc(candidateParams,probOfImprovement=True))
 		return candidateParams[optimalIndex]
 				

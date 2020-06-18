@@ -1,3 +1,5 @@
+from numpy.random import random
+
 def genRandomInRange(min, max):
 	'''
 	generates a uniform random value between min and max

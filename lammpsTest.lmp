@@ -1,0 +1,12 @@
+units           real
+boundary p p p
+atom_modify map array
+box tilt large
+read_data data.Si_expt.0
+pair_style      tersoff
+pair_coeff      * * ffield.tersoff Si 
+timestep 0.001
+compute etersoff all pair tersoff
+min_style cg
+fix 2 all box/relax iso 0.0 vmax 0.001
+minimize 0.0 1.0e-4 500 2500

@@ -1,0 +1,24 @@
+#Date created: 2020-02-14
+#Created by: Shariq Haseen
+######
+#Si parameters from: Tersoff, J. Phys. Rev. B, 1988, 38(14), 9902-9905.
+## Kroll, P. Ph.D. Dissertation, Technische Universitat Darmstadt, Darmstadt, Germany, 1996, 101.
+#N parameters from: Kroll, P. Ph.D. Dissertation, Technische Universitat Darmstadt, Darmstadt, Germany, 1996, 96. (001-1)
+##chi(Si-N) & omega(Si-N) from: Kroll, P. Ph.D. Dissertation, Technische Universitat Darmstadt, Darmstadt, Germany, 1996, 96. (001-1)
+######
+#Included interactions:  C-C, Si-N, Si-Si, Si-C
+#Excluded interactions:  C-N, N-N
+######
+#Units: METAL units ready - A & B (eV); lambda1, lambda2, & lambda3 (1/Angstroms); R & D (Angstroms)
+####################
+#                m    gamma lambda3          c         d          h          n         beta  lambda2         B         R         D   lambda1         A
+#         Si     3   1.0000       0   100390.0   16.2170   -0.59825    0.78734 1.100000e-06   1.7322   471.180    2.6500   0.15000    2.4799   1830.80
+Si   Si   Si     3   1.0000       0   100390.0   16.2170   -0.59825    0.78734 1.100000e-06   1.7322   471.180    2.6500   0.15000    2.4799   1830.80
+Si   Si   N      3   1.0993       0   100390.0   16.2170   -0.59825    0.78734 1.100000e-06   1.7322   471.180    2.6500   0.15000    2.4799   1830.80
+Si   N    Si     3   1.0000       0   100390.0   16.2170   -0.59825    0.78734 1.100000e-06   2.1218   294.986    2.2731   0.15178    4.1254   4487.63
+Si   N    N      3   1.0993       0   100390.0   16.2170   -0.59825    0.78734 1.100000e-06   2.1218   294.986    2.2731   0.15178    4.1254   4487.63
+#         N      3   1.0000       0    79934.0  134.3200   -0.99734   12.44980 1.056200e-01   2.5115   219.450    1.9500   0.15000    5.7708  11000.00
+N    N    N      3   1.0000       0    79934.0  134.3200   -0.99734   12.44980 1.056200e-01   2.5115     0.000    1.9500   0.15000    5.7708  11000.00
+N    N    Si     3   1.0993       0    79934.0  134.3200   -0.99734   12.44980 1.056200e-01   2.5115     0.000    1.9500   0.15000    5.7708  11000.00
+N    Si   N      3   1.0000       0    79934.0  134.3200   -0.99734   12.44980 1.056200e-01   2.1218   294.986    2.2731   0.15178    4.1254   4487.63
+N    Si   Si     3   1.0993       0    79934.0  134.3200   -0.99734   12.44980 1.056200e-01   2.1218   294.986    2.2731   0.15178    4.1254   4487.63

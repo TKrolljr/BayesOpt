@@ -29,6 +29,7 @@ from numpy import vstack
 from scipy.stats import norm
 from matplotlib import pyplot
 from numpy.random import normal
+import genRandoms as rand
 import warnings
 
 class BayesOptAlg:
@@ -72,7 +73,7 @@ class BayesOptAlg:
 		self.sampleResults = None
 		if(genNewSamples):
 			self.sampleArray = asarray(\
-			[[RandomInRange_Tuple(paramRanges[i]) for i in range(len(paramRanges))] \
+			[[rand.RandomInRange_Tuple(paramRanges[i]) for i in range(len(paramRanges))] \
 			for temp in range(2)])
 		
 			self.sampleResults = asarray(\
@@ -83,6 +84,7 @@ class BayesOptAlg:
 		
 		self.model.fit(self.sampleArray, self.sampleResults)
 
+	#TODO read from file
 	def readSamplesFromFile(self, paramFile):
 		sampleFile = open(paramFile)
 		lines = sampleFile.readlines()
@@ -174,7 +176,7 @@ class BayesOptAlg:
 		'''
 		the expected Improvement (EI) acquisition function
 		
-		EI(x) = (f(best)-f(x)) * CDF(zScore(x)) + std(x)*PDF(zScore(x))
+		EI(x) = (f(best)-f(x)) * CDF(zScore(x)) + (std(x)*PDF(zScore(x))
 		
 		@params
 		-------
@@ -210,7 +212,7 @@ class BayesOptAlg:
 		candidateNum = 100
 	
 	
-		candidateParams = [[RandomInRange_Tuple(range) for range in self.paramRanges] \
+		candidateParams = [[rand.RandomInRange_Tuple(range) for range in self.paramRanges] \
 		 for j in range(candidateNum)] 
 		#print(candidateParams)
 		 #done one candidateNum times TODO: better number here
@@ -246,37 +248,6 @@ class BayesOptAlg:
 		return self.sampleArray(bestIndex)
 			
 
-def genRandomInRange(min, max):
-	'''
-	generates a uniform random value between min and max
-	
-	@params
-	-------
-	min - float
-		the minimum of the random range
-	max - float
-		the maximum of the random range
-		
-		
-	@returns - float
-		the random value generated
-	'''
-	return (random()*(max - min)+min)
-	
-def RandomInRange_Tuple(rangeTuple):
-	'''
-	generates a uniform random value between the range denoted by rangeTuple
-	
-	@params
-	-------
-	rangeTuple - (float,float)
-		contains the bounds within which to generate: (min,max)
-		
-	
-	@returns - float
-		the random value generated
-	'''
-	return (random()*(rangeTuple[1] - rangeTuple[0])+rangeTuple[0])
 
 def __testObjectiveFunction(paramList):
 	'''

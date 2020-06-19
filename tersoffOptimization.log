@@ -1,44 +1,10 @@
 LAMMPS (22 Aug 2018)
   using 1 OpenMP thread(s) per MPI task
-#---Initialization---#
-units metal
-dimension 3
-boundary p p p
-atom_style atomic
-
-# read in a structure
-read_data    data.alpha_Si3N4
+Reading data file ...
   triclinic box = (0 0 0) to (7.80701 13.5223 5.65895) with tilt (0 -9.9e-05 0)
   1 by 1 by 1 MPI processor grid
   reading atoms ...
   56 atoms
-
-#---Atom Definition---#
-
-#---Pair Style---#
-pair_style tersoff
-pair_coeff * *  ffield.tersoff Si  N
-
-# ---------- RUN parameters ------------------
-variable dt         equal        0.001           # time-step used here
-
-thermo 100
-thermo_style custom step pe temp
-
-# ---------- Run Minimization ---------------------
-# minimize 1.0e-4 1.0e-6 100 1000
-
-reset_timestep 0
-
-compute etersoff all pair tersoff
-# INITIAL
-velocity all create 0.1 4928459 rot yes dist gaussian
-
-fix 2 all nve
-# fix 3 all temp/csvr     0.1  500.0   0.003 265133
-timestep ${dt}
-timestep 0.001
-run 0
 Neighbor list info ...
   update every 1 steps, delay 10 steps, check yes
   max neighbors/atom: 2000, page size: 100000
@@ -51,6 +17,10 @@ Neighbor list info ...
       pair build: full/bin/atomonly
       stencil: full/bin/3d
       bin: standard
+Setting up Verlet run ...
+  Unit style    : metal
+  Current step  : 0
+  Time step     : 0.001
 Per MPI rank memory allocation (min/avg/max) = 2.701 | 2.701 | 2.701 Mbytes
 Step PotEng Temp 
        0    311.52518          0.1 
@@ -81,5 +51,4 @@ Total # of neighbors = 2264
 Ave neighs/atom = 40.4286
 Neighbor list builds = 0
 Dangerous builds = 0
-
 Total wall time: 0:00:00

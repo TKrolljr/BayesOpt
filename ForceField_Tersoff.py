@@ -99,7 +99,7 @@ class ForceField_Tersoff:
         """
         try:
             file = open(ffield_path,"x")
-            file.write("Tersoff\n")
+            file.write("#Tersoff\n")
             for section in self.data:
                 for line in section:
                     for entry in line:
@@ -110,13 +110,13 @@ class ForceField_Tersoff:
                 file.write("#end of ffield")
         
         except:
-            os.remove("ffield_path")
+            os.remove(ffield_path)
             file = open(ffield_path, "x")
-            file.write("Tersoff\n")
+            file.write("#Tersoff\n")
             for section in self.data:
                 for line in section:
                     for entry in line:
-                        file.write(entry + " ")
+                        file.write(str(entry)+" ")
 
                     file.write("\n")
 

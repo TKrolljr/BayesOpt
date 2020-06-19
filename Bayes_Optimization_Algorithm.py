@@ -27,7 +27,6 @@ from numpy import asarray
 from numpy import argmax
 from numpy import vstack
 from scipy.stats import norm
-from matplotlib import pyplot
 from numpy.random import normal
 import genRandoms as rand
 import warnings
@@ -199,9 +198,9 @@ class BayesOptAlg:
 			
 			#find zScores
 			zScores = (candidateMeans-bestCurrentResult)/(candidateSTDs)
-			
+			explorationCoeff = 0.2
 			exploitationVal = -1*((bestCurrentResult-candidateMeans)*norm.cdf(zScores))
-			explorationVal = (candidateSTDs*norm.pdf(zScores))
+			explorationVal = explorationCoeff*(candidateSTDs*norm.pdf(zScores))
 		return  ( exploitationVal + explorationVal)
 		
 	def optimize_acquisitionFunc(self):
@@ -213,12 +212,12 @@ class BayesOptAlg:
 		'''
 		#TODO: better method of optimizing the function
 		# TODO: better number here
-		candidateNum = 100
+		candidateNum = 1000
 	
 	
 		candidateParams = [[rand.RandomInRange_Tuple(range) for range in self.paramRanges] \
 		 for j in range(candidateNum)]
-		optimalIndex = argmax(self.acquisitionFunc(candidateParams,probOfImprovement=True))
+		optimalIndex = argmax(self.acquisitionFunc(candidateParams,expected_improvement=True))
 		return candidateParams[optimalIndex]
 				
 	def learn(self, numIterations):
@@ -288,19 +287,20 @@ def __testObjectiveFunction2(paramList):
 	return - ((term1 - term2) + (term3 - term4))
 
 if __name__ == '__main__':
-	paramList = [(-3,3),(-3,3)]
-	bOpt = BayesOptAlg(paramList,__testObjectiveFunction2)
-	#print(bOpt.sampleArray)
-	#print(bOpt.sampleResults)
-	#print(bOpt.expectedImprovement(bOpt.sampleArray))
-	bOpt.learn(100)
-	temp = argmax(bOpt.sampleResults)
-	#print(bOpt.sampleResults[temp])
-	print(bOpt.expectedImprovement([[0.5,0.7]]))
-	fig = pyplot.figure()
-	ax = fig.add_subplot(111, projection='3d')
-	ax.scatter(bOpt.sampleArray[:,0],bOpt.sampleArray[:,1],bOpt.sampleResults)
-	pyplot.show()
+        from matplotlib import pyplot
+        paramList = [(-3,3),(-3,3)]
+        bOpt = BayesOptAlg(paramList,__testObjectiveFunction2)
+        #print(bOpt.sampleArray)
+        #print(bOpt.sampleResults)
+        #print(bOpt.expectedImprovement(bOpt.sampleArray))
+        bOpt.learn(100)
+        temp = argmax(bOpt.sampleResults)
+        #print(bOpt.sampleResults[temp])
+        print(bOpt.expectedImprovement([[0.5,0.7]]))
+        fig = pyplot.figure()
+        ax = fig.add_subplot(111, projection='3d')
+        ax.scatter(bOpt.sampleArray[:,0],bOpt.sampleArray[:,1],bOpt.sampleResults)
+        pyplot.show()
         
         	#print("a=%.3f;\tb=%.3f;\tfunc()=%.3f" % (a,b,bOpt.pollObjectiveFunction([a,b])))
 

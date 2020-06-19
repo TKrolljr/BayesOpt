@@ -1,0 +1,85 @@
+LAMMPS (22 Aug 2018)
+  using 1 OpenMP thread(s) per MPI task
+#---Initialization---#
+units metal
+dimension 3
+boundary p p p
+atom_style atomic
+
+# read in a structure
+read_data    data.alpha_Si3N4
+  triclinic box = (0 0 0) to (7.80701 13.5223 5.65895) with tilt (0 -9.9e-05 0)
+  1 by 1 by 1 MPI processor grid
+  reading atoms ...
+  56 atoms
+
+#---Atom Definition---#
+
+#---Pair Style---#
+pair_style tersoff
+pair_coeff * *  ffield.tersoff Si  N
+
+# ---------- RUN parameters ------------------
+variable dt         equal        0.001           # time-step used here
+
+thermo 100
+thermo_style custom step pe temp
+
+# ---------- Run Minimization ---------------------
+# minimize 1.0e-4 1.0e-6 100 1000
+
+reset_timestep 0
+
+compute etersoff all pair tersoff
+# INITIAL
+velocity all create 0.1 4928459 rot yes dist gaussian
+
+fix 2 all nve
+# fix 3 all temp/csvr     0.1  500.0   0.003 265133
+timestep ${dt}
+timestep 0.001
+run 0
+Neighbor list info ...
+  update every 1 steps, delay 10 steps, check yes
+  max neighbors/atom: 2000, page size: 100000
+  master list distance cutoff = 4.8
+  ghost atom cutoff = 4.8
+  binsize = 2.4, bins = 4 6 3
+  1 neighbor lists, perpetual/occasional/extra = 1 0 0
+  (1) pair tersoff, perpetual
+      attributes: full, newton on
+      pair build: full/bin/atomonly
+      stencil: full/bin/3d
+      bin: standard
+Per MPI rank memory allocation (min/avg/max) = 2.701 | 2.701 | 2.701 Mbytes
+Step PotEng Temp 
+       0   -303.46972          0.1 
+Loop time of 7.86781e-06 on 1 procs for 0 steps with 56 atoms
+
+152.5% CPU use with 1 MPI tasks x 1 OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0          | 0          | 0          |   0.0 |  0.00
+Neigh   | 0          | 0          | 0          |   0.0 |  0.00
+Comm    | 0          | 0          | 0          |   0.0 |  0.00
+Output  | 0          | 0          | 0          |   0.0 |  0.00
+Modify  | 0          | 0          | 0          |   0.0 |  0.00
+Other   |            | 7.868e-06  |            |       |100.00
+
+Nlocal:    56 ave 56 max 56 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:    510 ave 510 max 510 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:    0 ave 0 max 0 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+FullNghs:  2264 ave 2264 max 2264 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 2264
+Ave neighs/atom = 40.4286
+Neighbor list builds = 0
+Dangerous builds = 0
+
+Total wall time: 0:00:00

@@ -2,12 +2,12 @@
 #Created by: Shariq Haseen
 ######
 #Si parameters from: Tersoff, J. Phys. Rev. B, 1988, 38(14), 9902-9905.
-## Kroll, P. Ph.D. Dissertation, Technische Universitat Darmstadt, Darmstadt, Germany, 1996, 101.
+##Si R & D values derived from: Kroll, P. Ph.D. Dissertation, Technische Universitat Darmstadt, Darmstadt, Germany, 1996, 101.
 #N parameters from: Kroll, P. Ph.D. Dissertation, Technische Universitat Darmstadt, Darmstadt, Germany, 1996, 96. (001-1)
 ##chi(Si-N) & omega(Si-N) from: Kroll, P. Ph.D. Dissertation, Technische Universitat Darmstadt, Darmstadt, Germany, 1996, 96. (001-1)
 ######
-#Included interactions:  C-C, Si-N, Si-Si, Si-C
-#Excluded interactions:  C-N, N-N
+#Included interactions:  Si-N, Si-Si
+#Excluded interactions:  N-N
 ######
 #Units: METAL units ready - A & B (eV); lambda1, lambda2, & lambda3 (1/Angstroms); R & D (Angstroms)
 ####################

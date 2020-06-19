@@ -1,0 +1,35 @@
+#---Initialization---#
+units metal
+dimension 3
+boundary p p p
+atom_style atomic
+
+# read in a structure
+read_data    data.alpha_Si3N4  
+
+#---Atom Definition---#
+
+#---Pair Style---#
+pair_style tersoff
+pair_coeff * *  ffield.tersoff Si  N  
+
+# ---------- RUN parameters ------------------
+variable dt         equal        0.001           # time-step used here 
+
+thermo 100
+thermo_style custom step pe temp 
+
+# ---------- Run Minimization --------------------- 
+# minimize 1.0e-4 1.0e-6 100 1000
+
+reset_timestep 0
+
+compute etersoff all pair tersoff
+# INITIAL
+velocity all create 0.1 4928459 rot yes dist gaussian
+
+fix 2 all nve
+# fix 3 all temp/csvr     0.1  500.0   0.003 265133
+timestep ${dt}
+run 0
+

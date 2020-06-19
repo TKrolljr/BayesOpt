@@ -1,0 +1,32 @@
+
+IMPORTANT:
+for a Tersoff calculation, the data file must be converted forst .. essentially stripped off its 3rd column (charges : needed when ReaxFF is used)
+
+the "in file" is given as well.
+
+The "essential" number is in the "out file" of out.Si3N4, or the "log file" of log.lammps
+>> 0   -303.46972          0.1 
+
+=> -303.46972
+
+
+
+You see the parameter file => tersoff.SiCN.SiC-noCN.001-1.200214 ... actually quite messy 
+
+eliminating the lines with C brings you to => tersoff.SiN.param 
+
+#                m    gamma lambda3          c         d          h          n         beta  lambda2         B         R         D   lambda1         A
+Si   N    N      3   1.0993       0   100390.0   16.2170   -0.59825    0.78734 1.100000e-06   2.1218   294.986    2.2731   0.15178    4.1254   4487.63
+N    Si   Si     3   1.0993       0    79934.0  134.3200   -0.99734   12.44980 1.056200e-01   2.1218   294.986    2.2731   0.15178    4.1254   4487.63
+
+As you see, the last 6 columns are identical in both lines. ... they MUST be identical ... (technical, they can differ, but then it's not a "Tersoff potential" anymore.
+
+I would recomed to pick lambda1, lambda2, A, or B (or one after the other) as the parameter to be optimized.
+Then just compute the "energy" of the structure ... without optimization  ... and define as "objective function" the squared difference between whatever value you get and "-303.46972" 
+
+
+If this works, and works for each of the parameters lambda1, lambda2, A, or B independently (always optimizing just one) => great !
+
+Next step will then strive for an optimization of two parameters, e.g. (A,B) or (lambda1, lambda2) simultaneously. This will require at least two more calculations to be added.
+
+

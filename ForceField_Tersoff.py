@@ -9,23 +9,23 @@ py version: 3.7
 '''
 import os
 class ForceField_Tersoff:
-"""
-This class represents the data of a Tersoff Forcefield.
+    """
+    This class represents the data of a Tersoff Forcefield.
 
-The class is responsible for reading in a force field file, and parsing it to obtain
-and store its data. It can change this data. It is also capable of writing its data to
-a new forcefield file.
+    The class is responsible for reading in a force field file, and parsing it to obtain
+    and store its data. It can change this data. It is also capable of writing its data to
+    a new forcefield file.
 
-Fields:
--------
-ffield_path - String
-    the path to the object's force field file
-lines - list
-    a list where each element is a line of the force field file (parsed of comments, etc.)
-data - list
-    a list that is generalized to a structure all forcefields fit into. It holds actual data entries
--------
-"""
+    Fields:
+    -------
+    ffield_path - String
+        the path to the object's force field file
+    lines - list
+        a list where each element is a line of the force field file (parsed of comments, etc.)
+    data - list
+        a list that is generalized to a structure all forcefields fit into. It holds actual data entries
+    -------
+    """
 	
     def __init__(self, ffield_path):
         """
@@ -38,7 +38,7 @@ data - list
         """
         
         self.ffield_path = ffield_path
-        self.lines = self.readForceField(ffield_path)
+        self.lines = self.readForceField()
         self.removeCommentsAndWhitespace()
         self.data = self.parseAsData()
 		
@@ -110,7 +110,17 @@ data - list
                 file.write("#end of ffield")
         
         except:
-            print("There was an error opening the file to write at path: " + ffield_path)
+            os.remove("ffield_path")
+            file = open(ffield_path, "x")
+            file.write("Tersoff\n")
+            for section in self.data:
+                for line in section:
+                    for entry in line:
+                        file.write(entry + " ")
+
+                    file.write("\n")
+
+                file.write("#end of ffield")
 
 	
 if __name__ == "__main__":

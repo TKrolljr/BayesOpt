@@ -1,0 +1,9 @@
+ENERGY
+1.0 + dsph_Si3N4_0.98  /1 - dsph_Si3N4_1.0   /1 0.43316
+1.0 + dsph_Si3N4_1.0   /1 - dsph_Si3N4_1.02  /1 0.03288
+
+1.0 + alpha_Si3N4_1.0 /1 - alpha_Si3N4_0.98 /1 -1.5816
+1.0 + alpha_Si3N4_0.98 /1 - alpha_Si3N4_1.02 /1 -0.05759
+1.0 + alpha_Si3N4_1.02 /1 - alpha_Si3N4_0.9 /1 -36.97524
+1.0 + alpha_Si3N4_0.9 /1 - alpha_Si3N4_1.1 /1 9.70987
+ENDENERGY

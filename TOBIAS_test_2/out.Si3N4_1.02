@@ -1,7 +1,7 @@
 LAMMPS (16 Mar 2018)
 Reading data file ...
-  orthogonal box = (0 0 0) to (7.96675 13.7962 5.76904)
-  1 by 1 by 1 MPI processor grid
+  triclinic box = (0 0 0) to (7.96315 13.7927 5.77213) with tilt (0 0.00010098 0)
+  4 by 5 by 2 MPI processor grid
   reading atoms ...
   56 atoms
 Neighbor list info ...
@@ -16,16 +16,17 @@ Neighbor list info ...
       pair build: full/bin/atomonly
       stencil: full/bin/3d
       bin: standard
+WARNING: Proc sub-domain size < neighbor skin, could lead to lost atoms (../domain.cpp:937)
 Setting up Verlet run ...
   Unit style    : metal
   Current step  : 0
   Time step     : 0.001
-Per MPI rank memory allocation (min/avg/max) = 2.701 | 2.701 | 2.701 Mbytes
+Per MPI rank memory allocation (min/avg/max) = 2.713 | 2.832 | 2.964 Mbytes
 Step PotEng Temp 
-       0    -1243.296          0.1 
-Loop time of 1e-06 on 1 procs for 0 steps with 56 atoms
+       0   -301.83053          0.1 
+Loop time of 3.35991e-05 on 40 procs for 0 steps with 56 atoms
 
-200.0% CPU use with 1 MPI tasks x no OpenMP threads
+9.9% CPU use with 40 MPI tasks x no OpenMP threads
 
 MPI task timing breakdown:
 Section |  min time  |  avg time  |  max time  |%varavg| %total
@@ -35,16 +36,16 @@ Neigh   | 0          | 0          | 0          |   0.0 |  0.00
 Comm    | 0          | 0          | 0          |   0.0 |  0.00
 Output  | 0          | 0          | 0          |   0.0 |  0.00
 Modify  | 0          | 0          | 0          |   0.0 |  0.00
-Other   |            | 1e-06      |            |       |100.00
+Other   |            | 3.36e-05   |            |       |100.00
 
-Nlocal:    56 ave 56 max 56 min
-Histogram: 1 0 0 0 0 0 0 0 0 0
-Nghost:    510 ave 510 max 510 min
-Histogram: 1 0 0 0 0 0 0 0 0 0
+Nlocal:    1.4 ave 3 max 0 min
+Histogram: 8 0 0 13 0 0 14 0 0 5
+Nghost:    164.2 ave 180 max 145 min
+Histogram: 2 2 6 6 6 2 0 4 1 11
 Neighs:    0 ave 0 max 0 min
-Histogram: 1 0 0 0 0 0 0 0 0 0
-FullNghs:  2168 ave 2168 max 2168 min
-Histogram: 1 0 0 0 0 0 0 0 0 0
+Histogram: 40 0 0 0 0 0 0 0 0 0
+FullNghs:  54.2 ave 121 max 0 min
+Histogram: 8 0 4 9 0 0 14 0 0 5
 
 Total # of neighbors = 2168
 Ave neighs/atom = 38.7143

@@ -1,0 +1,25 @@
+best error:-4647.254210886787
+corresponding paramSet:[[1.50000000e+00 5.54170943e+01 5.27527903e+00 6.39052188e+03]]
+[[1.90064719e+00 1.65510059e+02 4.60249550e+00 6.81650996e+03]]
+[[-0.02499526]]
+
+
+best error:-21253.24615675299
+corresponding paramSet:[[1.55353582e+00 5.26669173e+01 6.59717437e+00 3.98537774e+03]]
+[[1.98546698e+00 2.05278031e+02 4.40599695e+00 5.65541178e+03]]
+[[-0.00814073]]
+
+Error func is (x*-x0)^2
+Das format is:
+Ln1. Best error after Bayesian Optimization
+Ln2. The 4 corresponding parameters
+Ln3. The 4 best parameters after continuing with gradient descent
+Ln4. The corresponding error
+
+Du willst line 3 in Lammps checken.
+Die parameter [[a,b,c,d]] correspond to [[lambda2,B,lambda1,A]], of the rows (Si N N) and (N Si Si)
+
+Also sollten die zwei rows fur mich so aus
+
+N Si Si 3 1.0993 0 79934.0 134.3200 -0.99734 12.44980 1.056200e-01 1.9 165.5 2.2731 0.15178 4.6 6816
+Si N N 3 1.0993 0 100390.0 16.2170 -0.59825 0.78734 1.100000e-06 1.9 165.5 2.2731 0.15178 4.6 6816

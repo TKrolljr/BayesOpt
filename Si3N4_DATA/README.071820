@@ -1,0 +1,17 @@
+data.dsph_Si3N4_0.98         -31.76261      
+data.dsph_Si3N4_1.0          -32.19577      
+data.dsph_Si3N4_1.02         -32.22865      
+
+data.spinel_Si3N4_0.98      -247.37708      
+data.spinel_Si3N4_1.0       -243.86885      
+data.spinel_Si3N4_1.02      -241.06713      
+
+data.wII_Si3N4_0.98         -153.46291      
+data.wII_Si3N4_1.0          -153.68256      
+data.wII_Si3N4_1.02         -152.37126      
+
+data.alpha_Si3N4_1.0  -303.46972
+data.alpha_Si3N4_0.98  -301.88812
+data.alpha_Si3N4_1.02  -301.83053
+data.alpha_Si3N4_0.9  -264.85529
+data.alpha_Si3N4_1.1  -274.56516

@@ -1,0 +1,40 @@
+
+
+5 structure files
+data.alpha_Si3N4_0.98
+data.alpha_Si3N4_1.02
+data.alpha_Si3N4_1.1
+data.alpha_Si3N4_0.9
+data.alpha_Si3N4_1.0
+
+5 corresponding data files
+out.Si3N4_0.98
+out.Si3N4_1.02
+out.Si3N4_1.1
+out.Si3N4_0.9
+out.Si3N4_1.0
+
+... note the extension ...
+The extension is a scaling factor (for lengths) applied to the original cell
+
+Please use 3 data points
+out.Si3N4_1.0:       0   -303.46972          0.1
+out.Si3N4_0.98:       0   -301.88812          0.1 
+out.Si3N4_1.02:       0   -301.83053          0.1
+
+or (and)
+out.Si3N4_0.9:       0   -264.85529          0.1 
+out.Si3N4_1.0:       0   -303.46972          0.1 
+out.Si3N4_1.1:       0   -274.56516          0.1 
+
+essential number os the negative value ...
+
+#                m    gamma lambda3          c         d          h          n         beta  lambda2         B         R         D   lambda1         A
+Si   N    N      3   1.0993       0   100390.0   16.2170   -0.59825    0.78734 1.100000e-06   2.1218   294.986    2.2731   0.15178    4.1254   4487.63
+N    Si   Si     3   1.0993       0    79934.0  134.3200   -0.99734   12.44980 1.056200e-01   2.1218   294.986    2.2731   0.15178    4.1254   4487.63
+
+Optimize any two of the combinations (A,B) or (lambda1, lambda2) simultaneously. You can also optimize A,lambda1 or B,lambda2 ... and mis it.
+
+If you use all 5 points, it might be possible to optimize all 4 parameters, A, B, lambda1, lambda2 simulataneously
+
+

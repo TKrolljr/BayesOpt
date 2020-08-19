@@ -1,7 +1,7 @@
 LAMMPS (16 Mar 2018)
 Reading data file ...
-  orthogonal box = (0 0 0) to (7.96675 13.7962 5.76904)
-  1 by 1 by 1 MPI processor grid
+  triclinic box = (0 0 0) to (8.58771 14.8745 6.22485) with tilt (0 0.0001089 0)
+  4 by 5 by 2 MPI processor grid
   reading atoms ...
   56 atoms
 Neighbor list info ...
@@ -9,7 +9,7 @@ Neighbor list info ...
   max neighbors/atom: 2000, page size: 100000
   master list distance cutoff = 4.8
   ghost atom cutoff = 4.8
-  binsize = 2.4, bins = 4 6 3
+  binsize = 2.4, bins = 4 7 3
   1 neighbor lists, perpetual/occasional/extra = 1 0 0
   (1) pair tersoff, perpetual
       attributes: full, newton on
@@ -20,12 +20,12 @@ Setting up Verlet run ...
   Unit style    : metal
   Current step  : 0
   Time step     : 0.001
-Per MPI rank memory allocation (min/avg/max) = 2.701 | 2.701 | 2.701 Mbytes
+Per MPI rank memory allocation (min/avg/max) = 2.713 | 2.832 | 2.963 Mbytes
 Step PotEng Temp 
-       0    -1243.296          0.1 
-Loop time of 1e-06 on 1 procs for 0 steps with 56 atoms
+       0   -274.56516          0.1 
+Loop time of 3.37183e-05 on 40 procs for 0 steps with 56 atoms
 
-200.0% CPU use with 1 MPI tasks x no OpenMP threads
+7.5% CPU use with 40 MPI tasks x no OpenMP threads
 
 MPI task timing breakdown:
 Section |  min time  |  avg time  |  max time  |%varavg| %total
@@ -35,19 +35,19 @@ Neigh   | 0          | 0          | 0          |   0.0 |  0.00
 Comm    | 0          | 0          | 0          |   0.0 |  0.00
 Output  | 0          | 0          | 0          |   0.0 |  0.00
 Modify  | 0          | 0          | 0          |   0.0 |  0.00
-Other   |            | 1e-06      |            |       |100.00
+Other   |            | 3.372e-05  |            |       |100.00
 
-Nlocal:    56 ave 56 max 56 min
-Histogram: 1 0 0 0 0 0 0 0 0 0
-Nghost:    510 ave 510 max 510 min
-Histogram: 1 0 0 0 0 0 0 0 0 0
+Nlocal:    1.4 ave 3 max 0 min
+Histogram: 8 0 0 13 0 0 14 0 0 5
+Nghost:    133.45 ave 140 max 127 min
+Histogram: 8 0 3 5 2 4 7 1 8 2
 Neighs:    0 ave 0 max 0 min
-Histogram: 1 0 0 0 0 0 0 0 0 0
-FullNghs:  2168 ave 2168 max 2168 min
-Histogram: 1 0 0 0 0 0 0 0 0 0
+Histogram: 40 0 0 0 0 0 0 0 0 0
+FullNghs:  43.4 ave 96 max 0 min
+Histogram: 8 0 0 13 0 0 14 0 0 5
 
-Total # of neighbors = 2168
-Ave neighs/atom = 38.7143
+Total # of neighbors = 1736
+Ave neighs/atom = 31
 Neighbor list builds = 0
 Dangerous builds = 0
 Total wall time: 0:00:00

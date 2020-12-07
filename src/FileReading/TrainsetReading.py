@@ -128,5 +128,69 @@ def __findIndexOfSectionEnd(data, endString):
             index = i
     return index
 
+def convertFileFromKCalToEV(pathname,newpathname=None):
+    partialObjList = []
+    lines = fr.readFileAsLines(pathname)
+    for i in range(len(lines)):
+        lines[i] = lines[i].replace('/', ' ')
+    lines = fr.removeWhiteSpaceAndComments(lines)
+    data = [line.split() for line in lines]
+    index = 0
+    length = len(data)
+    while (index < length):
+        SectionIdentifier = data[index][0]
+        print(SectionIdentifier)
+        endIndex = -1
+        # Why in the actual does python not have a switch statement???????
+        if (SectionIdentifier == "CHARGE"):
+            endIndex = __findIndexOfSectionEnd(data, "ENDCHARGE")
+            index = endIndex + 1
+        elif (SectionIdentifier == "STRESS"):
+            endIndex = __findIndexOfSectionEnd(data, "ENDSTRESS")
+            index = endIndex + 1
+        elif (SectionIdentifier == "PRESSURE"):
+            endIndex = __findIndexOfSectionEnd(data, "ENDPRESSURE")
+            index = endIndex + 1
+        elif (SectionIdentifier == "STSTRAIN"):
+            endIndex = __findIndexOfSectionEnd(data, "ENDSTSTRAIN")
+            index = endIndex + 1
+        elif (SectionIdentifier == "ATOM_FORCE"):
+            endIndex = __findIndexOfSectionEnd(data, "ENDATOM_FORCE")
+            index = endIndex + 1
+        elif (SectionIdentifier == "CELL"):
+            endIndex = __findIndexOfSectionEnd(data, "ENDCELL")
+            index = endIndex + 1
+        elif (SectionIdentifier == "FREQUENCIES"):
+            endIndex = __findIndexOfSectionEnd(data, "ENDFREQUENCIES")
+            index = endIndex + 1
+        elif (SectionIdentifier == "HEATFO"):
+            endIndex = __findIndexOfSectionEnd(data, "ENDHEATFO")
+            index = endIndex + 1
+        elif (SectionIdentifier == "GEOMETRY"):
+            endIndex = __findIndexOfSectionEnd(data, "ENDGEOMETRY")
+            index = endIndex + 1
+        elif (SectionIdentifier == "STRUCTURE"):
+            endIndex = __findIndexOfSectionEnd(data, "ENDSTRUCTURE")
+            index = endIndex + 1
+        elif (SectionIdentifier == "ENERGY"):
+            endIndex = __findIndexOfSectionEnd(data, "ENDENERGY")
+            for linedata in data[index+1:endIndex]:
+                energyIndex = len(linedata)-1
+                linedata[energyIndex] = str(float(linedata[energyIndex])/23.061)
+            index = endIndex + 1
+        else:
+            print("ERROR YOU ABSOLUTE BUFOON CHECK THE TRAINSETFILE")
+            break
+    if(newpathname==None):
+        newpathname=pathname
+
+    file = open(newpathname,"w")
+    for line in data:
+        for entry in line:
+            file.write(str(entry) + " ")
+
+        file.write("\n")
+    file.close()
+
 if __name__ == "__main__":
     readTrainsetFile("../trainset.in")

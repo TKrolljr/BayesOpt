@@ -19,6 +19,7 @@ from matplotlib import pyplot as plt
 import subprocess
 import os
 
+from src.ForceField_Tersoff_OG import ForceField_Tersoff_OG
 from src import Bayes_Optimization_Algorithm as BoA, plotUtils
 from src.FileReading import KnownValuesReading as KVR
 import time
@@ -26,6 +27,7 @@ import time
 from src.errorsUtil import singleMeanSquaredError
 
 from src.FileReading.TrainsetReading import readTrainsetFile
+from src.FileReading.TrainsetReading import convertFileFromKCalToEV
 import src.FileReading.ParamReading as ParamReading
 
 accumulatedLammpsTime = 0
@@ -254,19 +256,23 @@ def geoFileReadingTest():
     # print("hello World",flush=True)
     ffieldParams_ = []
     comm = MPI.COMM_WORLD
-    ffield_ = ForceField_Tersoff("Si3N4_DATA/ffield.original")
+    ffield_ = ForceField_Tersoff_OG("DATA2/Tersoff.BM.98.dat")
 
-    #ffieldParams_ = [ForceFieldParam((0, 3, 11), (0.01, 15.0), linkedParams=[[0, 4, 0]])]
-    #ffieldParams_.append(ForceFieldParam((0, 3, 12), (25.0, 600.0), linkedParams=[[0, 4, 0]]))
-    # ffieldParams_.append(ForceFieldParam((0, 3, 15), (1.0, 8.0), linkedParams=[[0, 4, 0]]))
-    # ffieldParams_.append(ForceFieldParam((0, 3, 16), (1000.0, 8000.0), linkedParams=[[0, 4, 0]]))
+    ffieldParams_ = [ForceFieldParam((0, 4, 8), (0.01, 150.0), linkedParams=[[0, 0, 0]])]
+    #ffieldParams_.append(ForceFieldParam((0, 4, 3), (1000.0, 100000.0), linkedParams=[[0, 0, 0]]))
+    #ffieldParams_.append(ForceFieldParam((0, 4, 4), (2.0, 600.0), linkedParams=[[0, 0, 0]]))
+    #ffieldParams_.append(ForceFieldParam((0, 4, 5), (-5.0, -0.01), linkedParams=[[0, 0, 0]]))
+    #ffieldParams_.append(ForceFieldParam((0, 4, 6), (0.1, 100.0), linkedParams=[[0, 0, 0]]))
+    #ffieldParams_.append(ForceFieldParam((0, 4, 7), (0.0000001, 0.1), linkedParams=[[0, 0, 0]]))
+    ffieldParams_.append(ForceFieldParam((0, 4, 9), (25.0, 60000.0), linkedParams=[[0, 0, 0]]))
+    ffieldParams_.append(ForceFieldParam((0, 4, 12), (1.0, 8.0), linkedParams=[[0, 0, 0]]))
+    ffieldParams_.append(ForceFieldParam((0, 4, 13), (100.0, 800000.0), linkedParams=[[0, 0, 0]]))
     # ffieldParams_.append(ForceFieldParam((0, 7, 8), (-1.0, 1.0)))  # , linkedParams=[[0, 4, 0]]))
     # ffieldParams_.append(ForceFieldParam((0, 7, 6), (1000.0, 1000000.0)))  # , linkedParams=[[0, 4, 0]]))
     # ffieldParams_.append(ForceFieldParam((0, 7, 7), (1.0, 1000.0)))  # , linkedParams=[[0, 4, 0]]))'''
 
-    ffieldParams_ = ParamReading.readParams("DATA2/params")
+    #ffieldParams_ = ParamReading.readParams("DATA2/params")
     paramRanges = [val.paramRange for val in ffieldParams_]
-
     originalValues = [ffield_.data[0][param.loc[1]][param.loc[2]] for param in ffieldParams_]
     print(originalValues)
     subprocess.call(["cp", "src/GeoFileReading/geo2data.exe", "DATA2"])
@@ -274,13 +280,14 @@ def geoFileReadingTest():
     os.remove("DATA2/geo2data.exe")
 
 
-    objList = readTrainsetFile("DATA2/trainset.in", singleMeanSquaredError, "")
+    objList = readTrainsetFile("DATA2/EVTrainset.in", singleMeanSquaredError, "")
 
     def objWrapper(simpleParamList):
         return -objectiveFunctionFromPartials(simpleParamList, ffieldParams_, ffield_, objList)
 
-    normBOpt = normalizationWrapper(paramRanges, objWrapper, startingSamples=400)
-    normBOpt.learn(100)
+    print(objWrapper(originalValues))
+    normBOpt = normalizationWrapper(paramRanges, objWrapper, startingSamples=800)
+    normBOpt.learn(200)
     bOpt = normBOpt.bOpt
     print("best error prior to GD:")
     print(max(normBOpt.bOpt.sampleResults.ravel()))
@@ -293,8 +300,6 @@ def geoFileReadingTest():
     print(objWrapper(x))
     print("corresponding paramSet:")
     print(x)
-    print("THE STARTING PARAMS:")
-    print(objWrapper(x))
 
 def skoptTest():
     # print("hello World",flush=True)

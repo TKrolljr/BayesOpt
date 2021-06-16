@@ -5,7 +5,7 @@ author: Tobias Kroll
 created: 6/18/2020
 py version: 3.7
 """
-from bayes_opt import BayesianOptimization
+#from bayes_opt import BayesianOptimization
 from src.ForceFieldParams import ForceFieldParam
 from src.ForceField_Tersoff import ForceField_Tersoff
 from src.LammpsFile import LammpsFile

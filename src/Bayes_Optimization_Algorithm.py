@@ -69,7 +69,7 @@ def normalizeArray(sampleArray,mean,std):
 
 def descaleNum0to1(normNum, range):
 	'''
-	scale a number to the passed range. 0 scales to range[0] and 1 to range[1]
+	scale a number to the passed range. 0 descales to range[0] and 1 to range[1]
 
 	:param normNum: float
 		the number to be rescaled
@@ -224,7 +224,7 @@ class BayesOptAlg:
 		self.objectiveFunction = objectiveFunction
 		kernel = Matern(length_scale=1.0, nu=2.5)
 		self.model = GaussianProcessRegressor(normalize_y=True)
-		self.paramRanges = paramRanges
+		self.paramRanges = asarray(paramRanges)
 		self.sampleArray = None
 		self.sampleResults = None
 		if(genNewSamples):
@@ -299,9 +299,9 @@ class BayesOptAlg:
 			candidateParamSets = numpy.atleast_2d(candidateParamSets)
 
 		if(expected_improvement):
-			return -self.expectedImprovement(candidateParamSets)
+			return -self.expectedImprovement(candidateParamSets).ravel()
 		if(probOfImprovement):
-			return -self.probabilityOfImprovement(candidateParamSets)
+			return -self.probabilityOfImprovement(candidateParamSets).ravel()
 		return -self.expectedImprovement(candidateParamSets)
 		pass
 	
@@ -413,6 +413,7 @@ class BayesOptAlg:
 			when true, the GP is immediately fit to the new data; when false, it must be manually done
 		'''
 		for i in range(numIterations):
+			print('Iteration:%i',i)
 			candidate = asarray([self.optimize_acquisitionFunc()])
 			if type(candidate) != 'array':
 				candidate = asarray(candidate)

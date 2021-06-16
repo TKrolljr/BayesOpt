@@ -1,4 +1,6 @@
-LAMMPS (16 Mar 2018)
+LAMMPS (24 Dec 2020)
+OMP_NUM_THREADS environment is not set. Defaulting to 1 thread. (src/comm.cpp:94)
+  using 1 OpenMP thread(s) per MPI task
 #---Initialization---#
 units metal
 dimension 3
@@ -7,10 +9,12 @@ atom_style atomic
 
 # read in a structure
 read_data data.000_000_000_002_000
-  orthogonal box = (0 0 0) to (7.80711 13.5238 5.6592)
+Reading data file ...
+  orthogonal box = (0.0000000 0.0000000 0.0000000) to (7.8071100 13.523820 5.6592000)
   1 by 1 by 1 MPI processor grid
   reading atoms ...
   56 atoms
+  read_data CPU = 0.000 seconds
 
 #---Atom Definition---#
 
@@ -50,12 +54,12 @@ Neighbor list info ...
       pair build: full/bin/atomonly
       stencil: full/bin/3d
       bin: standard
-Per MPI rank memory allocation (min/avg/max) = 2.703 | 2.703 | 2.703 Mbytes
+Per MPI rank memory allocation (min/avg/max) = 3.077 | 3.077 | 3.077 Mbytes
 Step PotEng Temp 
-       0    33.499555          0.1 
-Loop time of 1e-06 on 1 procs for 0 steps with 56 atoms
+       0    50.929915          0.1 
+Loop time of 7.97154e-07 on 1 procs for 0 steps with 56 atoms
 
-100.0% CPU use with 1 MPI tasks x no OpenMP threads
+125.4% CPU use with 1 MPI tasks x 1 OpenMP threads
 
 MPI task timing breakdown:
 Section |  min time  |  avg time  |  max time  |%varavg| %total
@@ -65,19 +69,19 @@ Neigh   | 0          | 0          | 0          |   0.0 |  0.00
 Comm    | 0          | 0          | 0          |   0.0 |  0.00
 Output  | 0          | 0          | 0          |   0.0 |  0.00
 Modify  | 0          | 0          | 0          |   0.0 |  0.00
-Other   |            | 1e-06      |            |       |100.00
+Other   |            | 7.972e-07  |            |       |100.00
 
-Nlocal:    56 ave 56 max 56 min
+Nlocal:        56.0000 ave          56 max          56 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
-Nghost:    530 ave 530 max 530 min
+Nghost:        530.000 ave         530 max         530 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
-Neighs:    0 ave 0 max 0 min
+Neighs:         0.00000 ave           0 max           0 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
-FullNghs:  2696 ave 2696 max 2696 min
+FullNghs:      2696.00 ave        2696 max        2696 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
 
 Total # of neighbors = 2696
-Ave neighs/atom = 48.1429
+Ave neighs/atom = 48.142857
 Neighbor list builds = 0
 Dangerous builds = 0
 

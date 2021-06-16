@@ -41,7 +41,7 @@ def readEnergies(data,errorFunc,structureDirectoryPath):
         energy = float(energy)
         retList.append(of.energyPartialObj(weight,tuple1,tuple2,energy,lmpFile,errorFunc,structureDirectoryPath))
 
-    print(retList)
+
     return retList
 
 

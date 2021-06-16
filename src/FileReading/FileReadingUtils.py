@@ -6,6 +6,7 @@ created: 7/20/2020
 py version: 3.7
 """
 
+import os
 
 def readFileAsLines(pathname):
     '''
